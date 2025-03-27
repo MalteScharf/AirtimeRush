@@ -1,19 +1,13 @@
 {
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
     "activeFile": "SkiGame.tiled-session.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
-        "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx": {
-            "scale": 1.16,
-            "selectedLayer": 2,
-            "viewCenter": {
-                "x": 161.20689655172413,
-                "y": 274.5689655172414
-            }
-        },
-        "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx#Ski": {
-            "scaleInDock": 1
-        },
         "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx": {
             "scale": 1.27,
             "selectedLayer": 0,
@@ -38,8 +32,14 @@
             "scaleInEditor": 1
         }
     },
-    "last.exportedFilePath": "/Users/maltescharf/Documents/Programming Projects/SkiGame/resources/TileMap",
+    "last.exportedFilePath": "/Users/maltescharf/Documents/Programming Projects/SkiGame/TileMap",
+    "last.imagePath": "/Users/maltescharf/Downloads/kenney_tiny-ski/Tilemap",
+    "map.height": 30,
     "map.lastUsedExportFilter": "All Files (*)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 20,
     "openFiles": [
         "SkiGame.tiled-session.tmx"
     ],
@@ -48,5 +48,11 @@
     "recentFiles": [
         "SkiGame.tiled-session.tmx",
         "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx"
-    ]
+    ],
+    "tileset.embedInMap": true,
+    "tileset.spacing": 1,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
 }
