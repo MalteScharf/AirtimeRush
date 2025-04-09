@@ -1,29 +1,31 @@
 {
-    "activeFile": "SkiGame.tiled-session.tmx",
+    "activeFile": "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx": {
-            "scale": 1.16,
-            "selectedLayer": 2,
+            "scale": 1.12,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 161.20689655172413,
-                "y": 274.5689655172414
+                "x": 160.2678571428571,
+                "y": 146.42857142857144
             }
         },
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx#Ski": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx": {
             "scale": 1.27,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 307.87401574803147,
-                "y": 198.0314960629921
+                "x": 301.9685039370079,
+                "y": 192.12598425196848
             }
         },
         "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleSheet.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "SkiGame.tiled-session.tmx": {
             "scale": 1.16,
@@ -41,12 +43,14 @@
     "last.exportedFilePath": "/Users/maltescharf/Documents/Programming Projects/SkiGame/resources/TileMap",
     "map.lastUsedExportFilter": "All Files (*)",
     "openFiles": [
-        "SkiGame.tiled-session.tmx"
+        "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx"
     ],
     "project": "SkiGame.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "SkiGame.tiled-session.tmx",
-        "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx"
+        "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx",
+        "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleSheet.tsx",
+        "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx",
+        "SkiGame.tiled-session.tmx"
     ]
 }

@@ -1,22 +1,35 @@
+// Imports
+import { playerJump } from './playerActions.js';
+
+
 const config = {
   type: Phaser.AUTO,
   width: 400,
   height: 300,
-  /*physics: {
+  pixelArt: true,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+  },
+  render:{
+    antialias: false,
+    roundPixels: true,
+  },
+  physics: {
     default: 'arcade',
     arcade: {
       gravity: {y:0},
       debug: true
     }
-  },*/
+  },
   scene: {
     preload: preload,
     create: create,
     update: update
   },
-  scale: {
+  /*scale: {
     zoom:2
-  }
+  }*/
 };
 const gameState ={};
 let player = {};
@@ -24,13 +37,28 @@ let jump = false;
 
 
 function preload() {
+  // Images
+
   this.load.image('img', 'resources/TileMap/tilemap.png')
   this.load.tilemapTiledJSON('background','resources/TileMap/Skigame.json')
-  this.load.image('player', 'resources/img/player.png')
-  this.load.image('playerJump', 'resources/img/playerJump.png')
+  this.load.image('player', 'resources/img/player4848.png');
+  this.load.once('complete', ()=>{
+    this.textures.get('player').setFilter(Phaser.Textures.FilterMode.NEAREST);
+  });
+  this.load.image('playerJump', 'resources/img/jump4848.png')
+
+  // Audio
+  this.load.audio('jumpSFX','resources/sound/jump01.wav');
+  this.load.audio('landSFX','resources/sound/landing02.mp3');
+
 }
 
 function create() {
+
+
+  // sounds
+  gameState.jumpSFX = this.sound.add('jumpSFX');
+  gameState.landSFX = this.sound.add('landSFX');
 
 
 
@@ -59,58 +87,54 @@ function create() {
   }
 
   // Setup Player
-  player = this.add.image(150, 40, 'player');
-  //player = this.add.physics.sprite(150, 40, 'player');
+  //player = this.add.image(150, 40, 'player');
+  //player.setScale(0.8)
+  player = this.add.physics.sprite(150, 40, 'player');
+  player.setCollideWorldBounds(true); // Prevent the player from going out of bounds
+  player.setOrigin(0.5, 0.5);  // Set origin to the center of the player sprite
+  player.setScale(1);
+  player.setTint(0x00ff00); // Green tint for visibility test
 
+
+// Set up gravity for the player
+  this.physics.world.gravity.y = 500; // Adjust gravity as needed
 
   // Create Cursor Key
   gameState.cursors = this.input.keyboard.createCursorKeys();
 
+  // Camera
+  this.cameras.main.startFollow(player);  // Camera will follow the player, move background with it
+  this.cameras.main.setZoom(1);
+
+  gameState.speed = 1;
+
 }
-
-
-function playerJump(){
-  player.setTexture('playerJump')
- this.add.time.addEvent({
-    delay:300,
-    callback: () => {
-      player.setTexture('player');
-      },
-    loop: false
-  });
-}
-
-function land(){
-  this.player.setTexture('player')
-}
-
 
 function update(){
   // Define Speed
-  let speed = 1;
   const maxSpeed = 2;
+  const breaking = 0.4;
 
-  if (speed<maxSpeed){
-    speed +=1;
+  if (gameState.speed<maxSpeed){
+    gameState.speed +=0.5;
   }
 
   // Controls
   if(gameState.cursors.right.isDown){
-    player.x += speed;
-    speed -=0.1;
+    player.setVelocityX(gameState.speed * 100); // Apply speed to the player horizontally
+    gameState.speed -= breaking;
   }
   if(gameState.cursors.left.isDown){
-    player.x -= speed;
-    speed -=0.1;
-
+    player.setVelocityX(-gameState.speed * 100); // Apply speed to the player horizontally
+    gameState.speed -= breaking;
   }
 
   // Make background move
-
-  gameState.layer1.y -= speed;
-  gameState.objects.y -= speed;
-  gameState.jumps.y -= speed;
-
+/*
+  gameState.layer1.y -= gameState.speed;
+  gameState.objects.y -= gameState.speed;
+  gameState.jumps.y -= gameState.speed;
+*/
   // Check if Player is leaving a Jump
 
   const tile = gameState.jumps.getTileAtWorldXY(player.x,player.y)
@@ -119,10 +143,8 @@ function update(){
     player.onLayer = true;
   } else {
     if (player.onLayer){
-      player.setTexture('playerJump')
-      this.time.delayedCall(400, () => {
-        player.setTexture('player');
-      }, null, this);      player.onLayer = false;
+      playerJump(this, player, gameState);
+      player.onLayer = false;
 
     }
   }
