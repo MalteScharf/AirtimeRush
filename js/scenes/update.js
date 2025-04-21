@@ -67,10 +67,37 @@ export function update() {
     if (this.player.onLayer){
       playerJump(this, this.player, this.gameState);
       this.player.onLayer = false;
-
-
     }
   }
+
+  // Chairlift Sound
+   // calc distance to Chairlift
+  let distance = Phaser.Math.Distance.Between(0, this.player.y+100, 0, this.lift.y);
+
+  // lift Threshold
+  let liftThreshold = 150;
+
+  // Volume Setting
+
+  let maxVolume = 1.5;
+  let fadeSpeed = 0.01; // Adjust for faster/slower fade
+
+
+
+  if (distance < liftThreshold) {
+    // Fade in
+    if (this.gameState.currentVolume < maxVolume) {
+      this.gameState.currentVolume = Math.min(maxVolume, this.gameState.currentVolume + fadeSpeed);
+      this.gameState.liftSFX.setVolume(this.gameState.currentVolume);
+    }
+  } else {
+    // Fade out
+    if (this.gameState.currentVolume > 0) {
+      this.gameState.currentVolume = Math.max(0, this.gameState.currentVolume - fadeSpeed);
+      this.gameState.liftSFX.setVolume(this.gameState.currentVolume);
+    }
+  }
+
 
 
 

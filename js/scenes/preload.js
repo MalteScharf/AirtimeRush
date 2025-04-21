@@ -20,5 +20,7 @@ export function preload() {
   // Audio
   this.load.audio('jumpSFX','resources/sound/jump01.wav');
   this.load.audio('landSFX','resources/sound/landing02.mp3');
+  this.load.audio('chairlift','resources/sound/chairlift.mp3');
+
 
 }
