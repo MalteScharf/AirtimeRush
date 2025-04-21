@@ -31,11 +31,31 @@ export function create() {
   this.player = this.physics.add.sprite(200, 50, 'player');
   this.player.setCollideWorldBounds(true); // Prevent player from going out of bounds
 
-  //this.physics.add.sprite(100, 50, 'player');
   // Rail
   this.gameState.rail = map.createLayer('Rail',tileset,0,0)
 
-  // Set camera to follow the player
+  // Lift
+  const firstGid = tileset.firstgid;
+
+  const objectLayer = map.getObjectLayer('Lift');
+
+  objectLayer.objects.forEach((object) => {
+    if (object.gid !== undefined) {
+      const frameIndex = object.gid - firstGid;
+
+      const liftSprite = this.physics.add.sprite(object.x, object.y, 'img', frameIndex);
+     // liftSprite.setVelocityX(-50)
+
+    }
+    //this.liftSprite.setVelocityX(50)
+
+  });
+
+
+
+
+
+    // Set camera to follow the player
   this.cameras.main.roundPixels = true;
 
   // sounds
@@ -50,6 +70,13 @@ export function create() {
       // Collider between player and Objects
   this.physics.add.collider(this.player, this.gameState.objects,crash);
 
+  // Create Cursor Key
+  this.gameState.cursors = this.input.keyboard.createCursorKeys();
+
+
+  // Spieler.onLayer initialisieren
+  this.player.onLayer = false;
+
   // Debug Collider
   const debugCollider = false;
   if (debugCollider){
@@ -59,23 +86,7 @@ export function create() {
       collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
       faceColor: new Phaser.Display.Color(40, 39, 37, 255) // Color of colliding face edges
     });
-
-    // Spielerwerte für smoothes Handling
-    this.player.setDamping(true);
-    this.player.setDragX(500); // Trägheit – je höher, desto schneller wird gestoppt
-    this.player.setMaxVelocity(150); // Max Speed
-    this.player.body.setSize(32, 48); // Match collision box to sprite size
-
-
   }
-
-  // Create Cursor Key
-  this.gameState.cursors = this.input.keyboard.createCursorKeys();
-
-
-  // Spieler.onLayer initialisieren
-  this.player.onLayer = false;
-  this.player.isJumping = false;
 
 }
 

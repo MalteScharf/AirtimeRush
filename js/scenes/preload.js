@@ -1,7 +1,11 @@
 export function preload() {
 
   // Tilemap
-  this.load.image('img', 'resources/TileMap/tilemap.png')
+  this.load.spritesheet('img', 'resources/TileMap/tilemap.png', {
+    frameWidth: 16,
+    frameHeight: 16
+  });
+
   this.load.tilemapTiledJSON('background','resources/TileMap/Skigame.json')
 
   // Load player sprite
