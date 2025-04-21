@@ -3,7 +3,7 @@ import {playerJump} from "../playerActions";
 
 export function update() {
 
-  this.player.setVelocityY(50);
+  this.player.setVelocityY(100);
 
   // player.x = Math.round(player.x);
   this.player.y = Math.round(this.player.y);
