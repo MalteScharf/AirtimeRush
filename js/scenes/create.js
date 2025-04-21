@@ -5,6 +5,7 @@ export function create() {
 
   this.gameState = {};
   this.player  = {};
+  this.lift = {};
 
   // Create Map
   const map = this.make.tilemap({key: 'background' })
@@ -43,7 +44,7 @@ export function create() {
     if (object.gid !== undefined) {
       const frameIndex = object.gid - firstGid;
 
-      const liftSprite = this.physics.add.sprite(object.x, object.y, 'img', frameIndex);
+      this.lift = this.physics.add.sprite(object.x, object.y, 'img', frameIndex);
      // liftSprite.setVelocityX(-50)
 
     }
@@ -61,6 +62,10 @@ export function create() {
   // sounds
   this.gameState.jumpSFX = this.sound.add('jumpSFX');
   this.gameState.landSFX = this.sound.add('landSFX');
+  this.gameState.liftSFX  = this.sound.add('chairlift', {loop: true, volume: 0});
+  this.gameState.liftSFX.play();
+  this.gameState.currentVolume =0;
+
 
 
   // Collider setup for Objects
