@@ -1,10 +1,13 @@
 // main.js
+import Phaser from 'phaser';
+
 import { MainScene } from './scenes/mainScene.js';
 
 const config = {
   type: Phaser.AUTO,
-  width: 400,
-  height: 300,
+  width: 450,
+  height: 400,
+  antialias: true, // Smooths edges
   pixelArt: true,
   physics: {
     default: 'arcade',

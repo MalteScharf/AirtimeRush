@@ -1,5 +1,5 @@
 // Imports
-import { playerJump } from './playerActions.js';
+import { playerJump } from './js/playerActions.js';
 
 
 const config = {

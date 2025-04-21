@@ -1,8 +1,12 @@
+import { crash } from '/js/playerActions.js';
+
 export function create() {
+
 
   this.gameState = {};
   this.player  = {};
 
+  // Create Map
   const map = this.make.tilemap({key: 'background' })
 
   this.physics.world.setBounds(
@@ -12,19 +16,24 @@ export function create() {
     map.heightInPixels // height of the tilemap
   );
 
+  // Load Tilesets
 
   const tileset = map.addTilesetImage('Ski','img')
-
+  // Ground and Objects
   this.gameState.layer1 = map.createLayer('Ground',tileset,0,0)
   this.gameState.objects = map.createLayer('Objects',tileset,0,0)
   this.gameState.jumps = map.createLayer('Jumps',tileset,0,0)
+  this.gameState.railShadow = map.createLayer('Rail Shadows',tileset,0,0)
+
+
 
   // Create player sprite with physics enabled
   this.player = this.physics.add.sprite(200, 50, 'player');
   this.player.setCollideWorldBounds(true); // Prevent player from going out of bounds
 
-  this.physics.add.sprite(100, 50, 'player1');
-
+  //this.physics.add.sprite(100, 50, 'player');
+  // Rail
+  this.gameState.rail = map.createLayer('Rail',tileset,0,0)
 
   // Set camera to follow the player
   this.cameras.main.roundPixels = true;
@@ -38,8 +47,11 @@ export function create() {
   this.gameState.objects.setCollisionByProperty( {collides : true })
   this.player.setCollideWorldBounds(true);
 
+      // Collider between player and Objects
+  this.physics.add.collider(this.player, this.gameState.objects,crash);
+
   // Debug Collider
-  const debugCollider = true;
+  const debugCollider = false;
   if (debugCollider){
     const debugGraphics = this.add.graphics().setAlpha(0.75);
     this.gameState.objects.renderDebug(debugGraphics, {
@@ -57,8 +69,13 @@ export function create() {
 
   }
 
-
   // Create Cursor Key
   this.gameState.cursors = this.input.keyboard.createCursorKeys();
 
+
+  // Spieler.onLayer initialisieren
+  this.player.onLayer = false;
+  this.player.isJumping = false;
+
 }
+
