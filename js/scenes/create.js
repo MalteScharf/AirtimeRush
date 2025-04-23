@@ -45,10 +45,9 @@ export function create() {
       const frameIndex = object.gid - firstGid;
 
       this.lift = this.physics.add.sprite(object.x, object.y, 'img', frameIndex);
-     // liftSprite.setVelocityX(-50)
+      this.lift.setVelocityX(-50)
 
     }
-    //this.liftSprite.setVelocityX(50)
 
   });
 

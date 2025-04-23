@@ -5,14 +5,14 @@
     "fileStates": {
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx": {
             "scale": 1.5,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 266.6666666666667,
-                "y": 616.3333333333333
+                "x": 248,
+                "y": 600
             }
         },
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx#Ski": {
-            "scaleInDock": 1,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         },
         "/Users/maltescharf/Downloads/kenney_tiny-ski/Tiled/sampleMap.tmx": {
