@@ -81,6 +81,29 @@ export function create() {
   // Spieler.onLayer initialisieren
   this.player.onLayer = false;
 
+  // UI
+
+  this.gameState.scoreText = this.add.text(320, 0, 'Airtime: 0', {
+    fontFamily: "'Jersey 15', sans-serif",
+    fontSize: "32px",
+    fill: '#00000',
+    resolution: 1
+  });
+
+  //this.gameState.scoreText = this.add.bitmapText(320, 100, 'Test', 'Airtime: 0', 72)
+
+
+  this.gameState.scoreText.setScrollFactor(0)
+
+  // Initialize Score
+  this.gameState.score =0;
+  this.time.delayedCall(100, () => {
+    this.gameState.scoreText.setText('Airtime: 0');
+  });
+  console.log(window.getComputedStyle(document.body).fontFamily);
+
+
+
   // Debug Collider
   const debugCollider = false;
   if (debugCollider){

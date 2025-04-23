@@ -98,6 +98,12 @@ export function update() {
     }
   }
 
+  // Scoring
+  if (this.player.isJumping){
+    this.gameState.score += 1;
+    this.gameState.scoreText.setText('Airtime: '+ this.gameState.score)
+  }
+
 
 
 

@@ -22,5 +22,8 @@ export function preload() {
   this.load.audio('landSFX','resources/sound/landing02.mp3');
   this.load.audio('chairlift','resources/sound/chairlift.mp3');
 
+  // Fonts
+  this.load.bitmapFont('Test', 'resources/fonts/Test.png', 'resources/fonts/Test.fnt');
+
 
 }
