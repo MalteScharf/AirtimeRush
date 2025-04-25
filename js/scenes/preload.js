@@ -9,7 +9,7 @@ export function preload() {
   this.load.tilemapTiledJSON('background','resources/TileMap/Skigame.json')
 
   // Load player sprite
-  this.load.image('player', 'resources/img/player4848.png'); // defalt
+  this.load.image('player', 'resources/img/player4848.png'); // default
   this.load.image('crash', 'resources/img/crash4848.png'); //crash
   this.load.image('leftTurn', 'resources/img/leftTurn4848.png'); //left Turn
   this.load.image('rightTurn', 'resources/img/rightTurn4848.png'); //right Turn
@@ -27,7 +27,9 @@ export function preload() {
     frameHeight: 32, // replace with actual height
   });
 
-
+  // UI Elements
+  this.load.image('perfect', 'resources/img/UI/perfect.png');
+  this.load.image('good', 'resources/img/UI/good.png'); //
 
   // Audio
   this.load.audio('jumpSFX','resources/sound/jump01.wav');

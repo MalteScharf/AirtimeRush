@@ -97,17 +97,33 @@ export function create() {
 
   // UI
 
+
+
   this.gameState.scoreText = this.add.text(320, 0, 'Airtime: 0', {
     fontFamily: "'Jersey 15', sans-serif",
     fontSize: "32px",
     fill: '#00000',
     resolution: 1
   });
+  this.gameState.scoreText.setScrollFactor(0)
+
+
+  // JumpingUI
+  this.gameState.perfectImage = this.physics.add.sprite(210, 150, 'perfect');
+  this.gameState.perfectImage.setScale(0.1);
+  this.gameState.perfectImage.setScrollFactor(0)
+  this.gameState.perfectImage.setVisible(false)
+
+  this.gameState.goodImage = this.physics.add.sprite(210, 150, 'good');
+  this.gameState.goodImage.setScale(0.1);
+  this.gameState.goodImage.setScrollFactor(0)
+  this.gameState.goodImage.setVisible(false)
+
+
 
   //this.gameState.scoreText = this.add.bitmapText(320, 100, 'Test', 'Airtime: 0', 72)
 
 
-  this.gameState.scoreText.setScrollFactor(0)
 
   // Initialize Score
   this.gameState.score =0;
