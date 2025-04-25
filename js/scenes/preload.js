@@ -15,6 +15,18 @@ export function preload() {
   this.load.image('rightTurn', 'resources/img/rightTurn4848.png'); //right Turn
   this.load.image('playerJump', 'resources/img/jump4848.png'); // jump
 
+  // Load Animations
+
+  this.load.image('takeoff0', 'resources/animations/tile00048.png');
+  this.load.image('takeoff1', 'resources/animations/tile00148.png');
+  this.load.image('takeoff2', 'resources/animations/tile00248.png');
+
+
+  this.load.spritesheet('takeoff', 'resources/animations/takeoff.png', {
+    frameWidth: 32, // replace with actual width
+    frameHeight: 32, // replace with actual height
+  });
+
 
 
   // Audio

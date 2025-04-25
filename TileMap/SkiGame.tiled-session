@@ -4,11 +4,11 @@
     ],
     "fileStates": {
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx": {
-            "scale": 1.5,
-            "selectedLayer": 4,
+            "scale": 1.463,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 248,
-                "y": 600
+                "x": 276.4866712235134,
+                "y": 816.4730006835271
             }
         },
         "/Users/maltescharf/Documents/GameDev/SkiGame.tiled-session.tmx#Ski": {

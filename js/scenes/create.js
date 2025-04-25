@@ -25,11 +25,18 @@ export function create() {
   this.gameState.objects = map.createLayer('Objects',tileset,0,0)
   this.gameState.jumps = map.createLayer('Jumps',tileset,0,0)
   this.gameState.railShadow = map.createLayer('Rail Shadows',tileset,0,0)
+  this.gameState.finish = map.createLayer('Finish',tileset,0,0)
+
 
 
 
   // Create player sprite with physics enabled
-  this.player = this.physics.add.sprite(200, 50, 'player');
+  const xStart = 200;
+  const yStart = 50;
+  const xFinishLine = 300;  // For Degugging
+  const yFinishLine = 1000;  // For Degugging
+
+  this.player = this.physics.add.sprite(xFinishLine, yFinishLine, 'player');
   this.player.setCollideWorldBounds(true); // Prevent player from going out of bounds
 
   // Rail
@@ -76,10 +83,15 @@ export function create() {
 
   // Create Cursor Key
   this.gameState.cursors = this.input.keyboard.createCursorKeys();
+  this.gameState.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
 
   // Spieler.onLayer initialisieren
   this.player.onLayer = false;
+
+  // Ending
+
+  this.gameState.hasEnded = false;
 
   // UI
 
@@ -102,6 +114,26 @@ export function create() {
   });
   console.log(window.getComputedStyle(document.body).fontFamily);
 
+
+  // Animations
+  this.player.isIdle = true;
+
+  this.input.keyboard.on('keyup-SPACE', function (event) {
+    console.log('Spacebar released');
+    this.player.playReverse('takeoff'); // TODO: Fix
+    this.player.isIdle = true;
+  }.bind(this));
+
+
+  this.anims.create({
+    key: 'takeoff',
+    frames: [
+      { key: 'takeoff0'},
+      { key: 'takeoff1'}
+    ],
+    frameRate: 8,
+    repeat: 0
+  });
 
 
   // Debug Collider
