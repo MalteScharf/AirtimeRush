@@ -25,11 +25,18 @@ export function create() {
   this.gameState.objects = map.createLayer('Objects',tileset,0,0)
   this.gameState.jumps = map.createLayer('Jumps',tileset,0,0)
   this.gameState.railShadow = map.createLayer('Rail Shadows',tileset,0,0)
+  this.gameState.finish = map.createLayer('Finish',tileset,0,0)
+
 
 
 
   // Create player sprite with physics enabled
-  this.player = this.physics.add.sprite(200, 50, 'player');
+  const xStart = 200;
+  const yStart = 50;
+  const xFinishLine = 300;  // For Degugging
+  const yFinishLine = 1000;  // For Degugging
+
+  this.player = this.physics.add.sprite(xFinishLine, yFinishLine, 'player');
   this.player.setCollideWorldBounds(true); // Prevent player from going out of bounds
 
   // Rail
@@ -45,10 +52,9 @@ export function create() {
       const frameIndex = object.gid - firstGid;
 
       this.lift = this.physics.add.sprite(object.x, object.y, 'img', frameIndex);
-     // liftSprite.setVelocityX(-50)
+      this.lift.setVelocityX(-50)
 
     }
-    //this.liftSprite.setVelocityX(50)
 
   });
 
@@ -77,10 +83,58 @@ export function create() {
 
   // Create Cursor Key
   this.gameState.cursors = this.input.keyboard.createCursorKeys();
+  this.gameState.spaceBar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
 
   // Spieler.onLayer initialisieren
   this.player.onLayer = false;
+
+  // Ending
+
+  this.gameState.hasEnded = false;
+
+  // UI
+
+  this.gameState.scoreText = this.add.text(320, 0, 'Airtime: 0', {
+    fontFamily: "'Jersey 15', sans-serif",
+    fontSize: "32px",
+    fill: '#00000',
+    resolution: 1
+  });
+
+  //this.gameState.scoreText = this.add.bitmapText(320, 100, 'Test', 'Airtime: 0', 72)
+
+
+  this.gameState.scoreText.setScrollFactor(0)
+
+  // Initialize Score
+  this.gameState.score =0;
+  this.time.delayedCall(100, () => {
+    this.gameState.scoreText.setText('Airtime: 0');
+  });
+  console.log(window.getComputedStyle(document.body).fontFamily);
+
+
+  // Animations
+  this.player.isIdle = true;
+
+  this.input.keyboard.on('keyup-SPACE', function (event) {
+    console.log('Spacebar released');
+    this.player.playReverse('takeoff'); // TODO: Fix
+    this.player.isIdle = true;
+  }.bind(this));
+
+
+  this.anims.create({
+    key: 'takeoff',
+    frames: [
+      { key: 'takeoff0'},
+      { key: 'takeoff1'}
+    ],
+    frameRate: 8,
+    repeat: 0
+  });
+
 
   // Debug Collider
   const debugCollider = false;
