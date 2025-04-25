@@ -2,10 +2,6 @@ import {playerJump} from "../playerActions";
 
 
 export function update() {
-  console.log("Velocity Y: "+ this.player.body.velocity.y)
-  console.log("Velocity X: "+ this.player.body.velocity.x)
-
-
   if (this.gameState.hasEnded){
     //this.player.setVelocityX(0);
     if (this.player.body.velocity.y >0){
@@ -83,7 +79,6 @@ export function update() {
 
   // Jump Animation
  if (Phaser.Input.Keyboard.JustDown(this.gameState.spaceBar)) {
-   console.log("Spacebar pressed");
    this.player.isIdle = false;
    this.player.play    ('takeoff')
  }

@@ -35,8 +35,10 @@ export function create() {
   const yStart = 50;
   const xFinishLine = 300;  // For Degugging
   const yFinishLine = 1000;  // For Degugging
+  const xJump = 210;  // For Degugging
+  const yJump = 350;  // For Degugging
 
-  this.player = this.physics.add.sprite(xFinishLine, yFinishLine, 'player');
+  this.player = this.physics.add.sprite(xJump, yJump, 'player');
   this.player.setCollideWorldBounds(true); // Prevent player from going out of bounds
 
   // Rail
@@ -118,10 +120,11 @@ export function create() {
   // Animations
   this.player.isIdle = true;
 
+  // Spacebar released
   this.input.keyboard.on('keyup-SPACE', function (event) {
-    console.log('Spacebar released');
     this.player.playReverse('takeoff'); // TODO: Fix
     this.player.isIdle = true;
+    this.gameState.lastSpacebarReleasedY = this.player.body.y;
   }.bind(this));
 
 
@@ -148,4 +151,6 @@ export function create() {
   }
 
 }
+
+
 
